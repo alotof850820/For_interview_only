@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: vue-app
+    volumes:
+      - .:/app
     ports:
       - 8080:80
   nginx:
