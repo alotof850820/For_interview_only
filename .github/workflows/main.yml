@@ -1,33 +1,33 @@
+name: Docker CI/CD
 
-name: Docker Image Build and Push to Dockerhub - CI/CD
-
-on: 
+on:
   push:
-    branches: 
-      - release
+    branches:
+      - main
 
 jobs:
-
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v1
-      
-    - name: Set Tag in evn variable
-      run: |
-        echo "${{ secrets.DOCKER_USER }}/${{ secrets.REPOSITORY_NAME }}" > APP_NAME
-        echo "$GITHUB_SHA" > TAG 
-        
-      
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag $(cat APP_NAME):$(cat TAG)
-    
-    - name: Tag the image to latest
-      run: docker tag $(cat APP_NAME):$(cat TAG) $(cat APP_NAME):latest
-      
-    - name: Docker Login
-      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-      
-    - name: Image push
-      run: docker push $(cat APP_NAME):latest
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker images
+        run: |
+          docker-compose build
+          docker-compose push
+
+      - name: SSH into production server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_SERVER_IP }}
+          username: ${{ secrets.PRODUCTION_SERVER_USERNAME }}
+          password: ${{ secrets.PRODUCTION_SERVER_PASSWORD }}
+          script: |
+            cd /path/to/your/app
+            docker-compose pull
+            docker-compose up -d
