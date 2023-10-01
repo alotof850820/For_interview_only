@@ -1,0 +1,22 @@
+$up: (
+  primary: #6e5faf,
+  primary-light: #ccc7e3,
+  primary-lighter: #f1eff7,
+  primary-bg: #f7f7fb,
+  btn-able-bg: #f3dac8,
+  btn-enabled-text: #d28e5b,
+  btn-disabled-bg: #e44d55,
+  btn-disabled-text: #ffffff,
+  grey: #999999,
+  grey-light: #dbdbdb,
+  grey-bg: #c4c4c4,
+  grey-underline: #dbdbdb,
+  title: #262a2b,
+  sub-title: #5c6466,
+  input-title: #757575,
+  input-sub-title: #a7afb2,
+);
+
+@function up($name) {
+  @return map-get($up, $name);
+}

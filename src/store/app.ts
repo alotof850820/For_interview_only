@@ -1,8 +1,20 @@
 // Utilities
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-export const useAppStore = defineStore('app', {
-  state: () => ({
-    //
-  }),
-})
+export const useSampleStore = defineStore("sample", {
+  state: () => {
+    return {
+      name: "sample",
+    };
+  },
+  getters: {
+    fullName(state) {
+      return `${state.name}-example`;
+    },
+  },
+  actions: {
+    changeName(newName: string) {
+      this.name = newName;
+    },
+  },
+});

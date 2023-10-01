@@ -1,26 +1,76 @@
-// Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
+
+const processBreadcrumb = (
+  lastRoute: Array<{ text: string; routeName: string; query?: any }> = []
+) => {
+  lastRoute.unshift({
+    text: "Home",
+    routeName: "Home",
+  });
+  return lastRoute;
+};
 
 const routes = [
   {
-    path: '/',
-    component: () => import('@/layouts/default/Default.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Home',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
-      },
-    ],
+    path: "/",
+    redirect: "/Home",
   },
-]
+  {
+    path: "/Home",
+    name: "Home",
+    meta: {
+      title: "Home",
+      breadCrumb: processBreadcrumb([]),
+    },
+    component: () => import("@/views/Home.vue"),
+  },
+  {
+    path: "/TodoList",
+    name: "TodoList",
+    meta: {
+      title: "TodoList",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "TodoList",
+          routeName: "TodoList",
+        },
+      ]),
+    },
+    component: () => import("@/views/TodoList.vue"),
+  },
+  {
+    path: "/SetTime",
+    name: "SetTime",
+    meta: {
+      title: "SetTime",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "SetTime",
+          routeName: "SetTime",
+        },
+      ]),
+    },
+    component: () => import("@/views/SetTime.vue"),
+  },
+  {
+    path: "/VueTest",
+    name: "VueTest",
+    meta: {
+      title: "VueTest",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "VueTest",
+          routeName: "VueTest",
+        },
+      ]),
+    },
+    component: () => import("@/views/VueTest.vue"),
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-})
+});
 
-export default router
+export default router;
