@@ -12,6 +12,7 @@ baseReq.interceptors.request.use((res: InternalAxiosRequestConfig) => {
   res.headers = new AxiosHeaders({
     "Content-Type": "application/json",
   });
+  res.headers.Authorization = "Bearer " + localStorage.getItem("token");
   return res;
 });
 

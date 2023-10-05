@@ -68,13 +68,36 @@ defineProps({
     default: () => [],
   },
 });
-
 const dialogVisible = ref<boolean>(false);
 const userData = reactive<TodoType>({
   title: "",
   completed: true,
   userId: 1,
 });
+
+const peopleData = [
+  { id: 1, name: "jackson" },
+  { id: 2, name: "leo" },
+  { id: 3, name: "nike" },
+  { id: 4, name: "peter" },
+];
+
+const hobbsData = [
+  { name: "watch movie", peopleId: [1, 2] },
+  { name: "running", peopleId: [3, 4] },
+];
+
+console.log(
+  hobbsData
+    .map((item) =>
+      item.peopleId.map((id) => ({
+        id: peopleData.find((data) => data.id === id).id,
+        name: peopleData.find((data) => data.id === id).name,
+        hobbsName: item.name,
+      }))
+    )
+    .flat()
+);
 
 const emit = defineEmits(["reload"]);
 
