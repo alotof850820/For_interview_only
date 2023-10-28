@@ -2,6 +2,7 @@
 import vue from "@vitejs/plugin-vue";
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 import ViteFonts from "unplugin-fonts/vite";
+import { VitePWA } from "vite-plugin-pwa";
 
 // Utilities
 import { defineConfig } from "vitest/config";
@@ -30,6 +31,30 @@ export default defineConfig({
           {
             name: "Roboto",
             styles: "wght@100;300;400;500;700;900",
+          },
+        ],
+      },
+    }),
+    VitePWA({
+      manifest: {
+        name: "PWA 学习",
+        description: "我的第一个 PWA 项目",
+        theme_color: "#00bd7e",
+        icons: [
+          {
+            src: "/App_icon192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/App_icon512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+          {
+            src: "/App_icon60.png",
+            sizes: "60x60",
+            type: "image/png",
           },
         ],
       },

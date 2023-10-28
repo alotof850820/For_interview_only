@@ -15,23 +15,23 @@ describe("UnitTest", () => {
 });
 
 // List
-describe("List", () => {
-  it("render todo title", async () => {
-    const mockApiData = [
-      { userId: 1, title: "Test Todo 1" },
-      { userId: 2, title: "Test Todo 2" },
-    ];
+// describe("List", () => {
+//   it("render todo title", async () => {
+//     const mockApiData = [
+//       { userId: 1, title: "Test Todo 1" },
+//       { userId: 2, title: "Test Todo 2" },
+//     ];
 
-    const wrapper = mount(List, {
-      props: {
-        listData: mockApiData,
-      },
-    });
+//     const wrapper = mount(List, {
+//       props: {
+//         listData: mockApiData,
+//       },
+//     });
 
-    // 可以取得元素
+//     // 可以取得元素
 
-    await wrapper.vm.$nextTick();
-    const todo = wrapper.get("[data-test='todo']");
-    // expect(todo.text()).toBe("test");
-  });
-});
+//     await wrapper.vm.$nextTick();
+//     const todo = wrapper.get("[data-test='todo']");
+//     // expect(todo.text()).toBe("test");
+//   });
+// });

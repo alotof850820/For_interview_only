@@ -10,7 +10,7 @@ const processBreadcrumb = (
   return lastRoute;
 };
 
-const routes = [
+export const routes = [
   {
     path: "/",
     redirect: "/Home",
@@ -65,6 +65,90 @@ const routes = [
       ]),
     },
     component: () => import("@/views/VueTest.vue"),
+  },
+  {
+    path: "/PostView",
+    name: "PostView",
+    meta: {
+      title: "PostView",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "PostView",
+          routeName: "PostView",
+        },
+      ]),
+    },
+    component: () => import("@/views/PostView.vue"),
+  },
+  {
+    path: "/FunctionalProgramView",
+    name: "FunctionalProgram",
+    meta: {
+      title: "FunctionalProgram",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "FunctionalProgram",
+          routeName: "FunctionalProgram",
+        },
+      ]),
+    },
+    component: () => import("@/views/FunctionalProgram.vue"),
+  },
+  {
+    path: "/ThirdUITest",
+    name: "ThirdUITest",
+    meta: {
+      title: "ThirdUITest",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "ThirdUITest",
+          routeName: "ThirdUITest",
+        },
+      ]),
+    },
+    component: () => import("@/views/ThirdUITest.vue"),
+  },
+  {
+    path: "/testSlots",
+    name: "testSlots",
+    meta: {
+      title: "testSlots",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "testSlots",
+          routeName: "testSlots",
+        },
+      ]),
+    },
+    component: () => import("@/views/testSlots.vue"),
+  },
+  {
+    path: "/testAPI",
+    name: "testAPI",
+    meta: {
+      title: "testAPI",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "testAPI",
+          routeName: "testAPI",
+        },
+      ]),
+    },
+    component: () => import("@/views/testAPI.vue"),
+  },
+  {
+    path: "/PiniaView",
+    name: "PiniaView",
+    meta: {
+      title: "PiniaView",
+      breadCrumb: processBreadcrumb([
+        {
+          text: "PiniaView",
+          routeName: "PiniaView",
+        },
+      ]),
+    },
+    component: () => import("@/views/PiniaView.vue"),
   },
 ];
 

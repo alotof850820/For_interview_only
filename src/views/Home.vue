@@ -38,6 +38,36 @@ const getSettingData = () => {
       pathName: "VueTest",
       content: "VueTest",
     },
+    {
+      title: "PostView",
+      pathName: "PostView",
+      content: "PostView",
+    },
+    {
+      title: "FunctionalProgram",
+      pathName: "FunctionalProgram",
+      content: "FunctionalProgram",
+    },
+    {
+      title: "ThirdUITest",
+      pathName: "ThirdUITest",
+      content: "ThirdUITest",
+    },
+    {
+      title: "testSlots",
+      pathName: "testSlots",
+      content: "testSlots",
+    },
+    {
+      title: "testAPI",
+      pathName: "testAPI",
+      content: "testAPI",
+    },
+    {
+      title: "PiniaView",
+      pathName: "PiniaView",
+      content: "PiniaView",
+    },
   ];
   getRowsMaxCard();
 };
