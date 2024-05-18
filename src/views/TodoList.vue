@@ -14,7 +14,6 @@ const allTodos = ref<AllTodoArrayType>([]);
 
 const getAllTodo = async () => {
   const res = await apiGetAlltodos();
-
   if (res.status === 200) {
     allTodos.value = res.data.filter((user) => user.userId === 1);
     allTodos.value.forEach((user) => (user.title = user.title + "test"));

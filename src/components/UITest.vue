@@ -65,17 +65,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { computed } from "vue";
-const defaultWidth = ref<number>(251);
-const props = defineProps({
-  width: {
-    type: Number,
-    default: 151,
-  },
-});
-const ratio = computed(() => props.width / defaultWidth.value);
-console.log(ratio.value);
+
+
 </script>
 <style lang="scss" scoped>
 .post-box {
@@ -119,7 +110,6 @@ console.log(ratio.value);
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
-      width: calc(251px * v-bind(ratio));
       width: 100%;
       .post-tag {
         min-width: 40px;

@@ -1,36 +1,43 @@
-import axios from "axios";
+import axios, { AxiosHeaders, InternalAxiosRequestConfig } from "axios";
 import type { TodoResponseType, TodoType } from "./apiTodoListType";
 
-const header = {
-  headers: {
+const baseReq = axios.create();
+
+baseReq.interceptors.request.use((res: InternalAxiosRequestConfig) => {
+  res.baseURL = "https://jsonplaceholder.typicode.com"; // 可用環變
+  res.headers = new AxiosHeaders({
     "Content-type": "application/json; charset=UTF-8",
-  },
-};
+  });
+  res.headers.Authorization = "Bearer " + localStorage.getItem("token");
+  return res;
+});
+
+baseReq.interceptors.response.use((response) => {
+// success
+  return response;
+}, (error) => {
+  // error
+  if (error.response) {
+    console.error('Response error:', error.response);
+  } else if (error.request) {
+    console.error('Request error:', error.request);
+  } else {
+    console.error('Error:', error.message);
+  }
+  return Promise.reject(error);
+});
 
 export const apiGetAlltodos = () =>
-  axios.get<any, TodoResponseType>(
-    `https://jsonplaceholder.typicode.com/todos`
-  );
+  baseReq.get<any, TodoResponseType>(`/todos`);
 
 export const apiAddtodo = (data: TodoType) =>
-  axios.post<any, TodoResponseType>(
-    `https://jsonplaceholder.typicode.com/todos`,
-    data,
-    header
-  );
+  baseReq.post<any, TodoResponseType>(`/todos`,data);
 
 export const apiUpdatetodo = (id: number, data: TodoType) =>
-  axios.put<any, TodoResponseType>(
-    `https://jsonplaceholder.typicode.com/todos/${id}`,
-    data,
-    header
-  );
+  baseReq.put<any, TodoResponseType>(`/todos/${id}`,data);
+
 export const apiEdittodo = (id: number, data: TodoType) =>
-  axios.patch<any, TodoResponseType>(
-    `https://jsonplaceholder.typicode.com/todos/${id}`,
-    data,
-    header
-  );
+  baseReq.patch<any, TodoResponseType>(`/todos/${id}`,data);
 
 export const apiDeltodo = (id: number) =>
-  axios.delete<any, any>(`https://jsonplaceholder.typicode.com/todos/${id}`);
+  baseReq.delete<any, any>(`/todos/${id}`);
